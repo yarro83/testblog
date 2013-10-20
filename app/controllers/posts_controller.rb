@@ -2,8 +2,21 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!
   expose_decorated(:posts)
   expose_decorated(:post)
-  expose_decorated(:comments) { post.comments }
-  expose(:tag_cloud) { [] }
+  expose_decorated(:comments) { (current_user == post.user) ? post.comments : post.comments.where(abusive: false) }
+  expose(:tag_cloud) do
+    Post.all.inject([]) do |result, element|
+      element.tags_array.map(&:to_s).each do |tag|
+        if result.map(&:first).include?(tag)
+          tag_entity_count = result.select{ |el| el.first == tag }.first.pop + 1.0
+          result.select{ |el| el.first == tag }.first << tag_entity_count
+
+        else 
+          result << [tag, 1.0]
+        end
+      end
+      result
+    end.sort_by{ |el| el.last}
+  end
 
   def index
   end

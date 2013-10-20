@@ -12,6 +12,8 @@ class User
   validates_presence_of :encrypted_password
 
   has_many :posts
+  has_many :votes
+  has_many :comments
 
   ## Recoverable
   field :reset_password_token,   type: String
@@ -41,5 +43,9 @@ class User
 
   def to_s
     nickname.present? ? nickname : name
+  end
+
+  def can_vote_for?(comment_id)
+    self.votes.where(comment_id: comment_id).empty?
   end
 end

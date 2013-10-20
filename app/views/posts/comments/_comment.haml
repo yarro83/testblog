@@ -1,9 +1,17 @@
-- if comment.persisted?
+- if comment.abusive? && (post.user != current_user)
   .comment
-    .comment__header
-      %strong= comment.user.to_s
-      = distance_of_time_in_words_to_now(comment.created_at)
-      ago
-    .comment__body
-      = comment.body
+    This comment received too many negative votes
+- else
+  - if comment.persisted?
+    .comment
+      .comment__header
+        %strong= comment.user.to_s
+        = distance_of_time_in_words_to_now(comment.created_at)
+        ago
+      .comment__body
+        = comment.body
+      .comment__votes
+        Votes:
+        = comment.votes.map(&:value).inject(:+)
+        = post.vote_buttons(comment.id, current_user)
 

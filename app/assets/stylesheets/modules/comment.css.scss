@@ -20,14 +20,6 @@
   height: 20px;
 }
 
-input.comment__button-new {
-  @extend .btn;
-  @extend .btn-primary;
-  @extend .btn-small;
-  font-size: 12px;
-  float: right;
-}
-
 .post__comments .post__comments-list {
   margin: 45px 0 20px;
 }
@@ -50,3 +42,17 @@ input.comment__button-new {
   font-size: 12pt;
 }
 
+input.comment__button-new {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-small;
+  font-size: 12px;
+  float: right;
+}
+
+a.comment__vote-button {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-small;
+  font-size: 12px;
+}
