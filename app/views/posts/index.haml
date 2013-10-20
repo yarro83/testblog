@@ -9,5 +9,7 @@
 %ol
   - posts.each do |post|
     %li.post--short-size
-      .post__title= link_to post.title, post_path(post)
+      .post__title 
+        =link_to post.title, post_path(post)
+        (#{post.human_comments_count})
       .post__body= post.truncated_body

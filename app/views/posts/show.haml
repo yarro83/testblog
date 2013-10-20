@@ -10,3 +10,11 @@
   .post__tags-list.tagsinput
     - post.tags_array.each do |tag|
       = content_tag :span, tag, class: 'tag'
+
+  .post__comments
+    %h4= post.human_comments_count
+    .post__comments-new
+      = render partial: "posts/comments/new", locals: { post: post, comment: @comment || Comment.new}
+    .post__comments-list
+      = render partial: "posts/comments/comment", collection: post.comments
+

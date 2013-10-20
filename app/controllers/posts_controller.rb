@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!
   expose_decorated(:posts)
   expose_decorated(:post)
+  expose_decorated(:comments) { post.comments }
   expose(:tag_cloud) { [] }
 
   def index

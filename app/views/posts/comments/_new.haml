@@ -1,0 +1,4 @@
+= form_for [post, comment] do |f|
+  = f.hidden_field :user_id, value: current_user.id
+  = f.text_area :body, placeholder: "Leave your comment...", label: false
+  = f.submit "comment", class: "comment__button-new"
