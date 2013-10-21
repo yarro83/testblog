@@ -47,6 +47,9 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-sass (2.3.0.1)
       sass (~> 3.2)
+    bson (1.9.2)
+    bson_ext (1.9.2)
+      bson (~> 1.9.2)
     builder (3.0.4)
     coderay (1.0.9)
     coffee-rails (3.2.2)
@@ -112,6 +115,8 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.1)
     mime-types (1.25)
+    mongo (1.9.2)
+      bson (~> 1.9.2)
     mongoid (3.1.5)
       activemodel (~> 3.2)
       moped (~> 1.4)
@@ -218,6 +223,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
+  bson_ext
   coffee-rails
   database_cleaner
   decent_decoration
@@ -232,6 +238,7 @@ DEPENDENCIES
   html2haml
   hub
   jquery-rails
+  mongo
   mongoid
   mongoid-rspec
   mongoid_taggable

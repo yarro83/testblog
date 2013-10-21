@@ -43,3 +43,8 @@ group :test do
   gem 'shoulda-matchers'
 end
 
+group :production do
+  gem 'mongo'
+  gem 'bson_ext'
+end
+
