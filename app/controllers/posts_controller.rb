@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   expose_decorated(:posts)
   expose_decorated(:post)
   expose_decorated(:comments) { (current_user == post.user) ? post.comments : post.comments.where(abusive: false) }
+
   expose(:tag_cloud) do
     Post.all.inject([]) do |result, element|
       element.tags_array.map(&:to_s).each do |tag|
@@ -50,6 +51,7 @@ class PostsController < ApplicationController
 
   def create
     if post.save
+      current_user.posts << post
       redirect_to action: :index
     else
       render :new

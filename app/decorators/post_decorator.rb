@@ -22,7 +22,7 @@ class PostDecorator < Draper::Decorator
 
   def vote_buttons(comment_id, current_user)
     if (user == current_user) && (comments.find(comment_id).abusive?)
-      h.link_to("Unmark as abusive", h.mark_as_not_abusive_post_comment_path(id: comment_id, post_id: id), method: :post, class: "comment__vote-button")
+      h.link_to("Mark as not abusive", h.mark_as_not_abusive_post_comment_path(id: comment_id, post_id: id), method: :post, class: "comment__vote-button")
     elsif current_user.can_vote_for?(comment_id)
       h.link_to("Vote Up", h.vote_up_post_comment_path(id: comment_id, post_id: id), method: :post, class: "comment__vote-button") +
       h.raw("&nbsp;") +
